@@ -1,5 +1,6 @@
 package forms;
 
+import dao.UsuarioDAO;
 import factory.ConnectionFactory;
 import model.Usuario;
 
@@ -54,37 +55,10 @@ public class NovoUsuario {
                 usuario.setEmail(fieldEmail.getText());
                 usuario.setSenha(fieldSenha.getText());
                 usuario.setTelefone(fieldTelefone.getText());
-                Boolean sucesso = cadastrarUsuario(usuario);
-                System.out.println(sucesso);
+                UsuarioDAO.salvar(usuario);
+                new GerenciarUsuario();
+                frameNovoUsuario.dispose();
             }
         });
-    }
-
-    public Boolean cadastrarUsuario(Usuario usuario)
-    {
-        try
-        {
-            Connection conn = ConnectionFactory.criaConexao();
-            String sql = "INSERT INTO usuario (nomecompleto, nomeusuario, email, senha, telefone) " +
-                    "VALUES (?, ?, ?, ?, ?)";
-            PreparedStatement preparedStatement = (PreparedStatement) conn.prepareStatement(sql);
-            preparedStatement.setString(1, usuario.getNomeCompleto());
-            preparedStatement.setString(2, usuario.getNomeUsuario());
-            preparedStatement.setString(3, usuario.getEmail());
-            preparedStatement.setString(4, usuario.getSenha());
-            preparedStatement.setString(5, usuario.getTelefone());
-            preparedStatement.execute();
-            JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso");
-            new GerenciarUsuario();
-            frameNovoUsuario.dispose();
-        }
-        catch (Exception e)
-        {
-            JOptionPane.showMessageDialog(null, "Houve algum erro no seu cadastro");
-            e.printStackTrace();
-            return false;
-        }
-
-        return false;
     }
 }

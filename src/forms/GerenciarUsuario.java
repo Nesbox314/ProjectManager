@@ -1,5 +1,6 @@
 package forms;
 
+import dao.UsuarioDAO;
 import factory.ConnectionFactory;
 
 import javax.swing.*;
@@ -16,6 +17,7 @@ public class GerenciarUsuario {
     private JTable tableGerenciarUsuario;
     private JButton buttonNovoUsuario;
     private JButton deletarUsuárioButton;
+    private JButton editarUsuárioButton;
 
     GerenciarUsuario()
     {
@@ -43,8 +45,21 @@ public class GerenciarUsuario {
                 if(tableGerenciarUsuario.getSelectedRowCount() == 1)
                 {
                     String id = tableModel.getValueAt(tableGerenciarUsuario.getSelectedRow(), 0).toString();
-                    deletarUsuario(id);
+                    UsuarioDAO.deletar(id);
                     tableModel.removeRow(tableGerenciarUsuario.getSelectedRow());
+                }
+            }
+        });
+
+        editarUsuárioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DefaultTableModel tableModel = (DefaultTableModel) tableGerenciarUsuario.getModel();
+                if(tableGerenciarUsuario.getSelectedRowCount() == 1)
+                {
+                    String id = tableModel.getValueAt(tableGerenciarUsuario.getSelectedRow(), 0).toString();
+                    new EditarUsuario(id);
+                    frameGerenciarUsuario.dispose();;
                 }
             }
         });
@@ -52,20 +67,17 @@ public class GerenciarUsuario {
 
     private void criarTabela()
     {
-        DefaultTableModel daDefaultTableModel = new DefaultTableModel(0, 0);
+        DefaultTableModel defaultTableModel = new DefaultTableModel(0, 0);
 
         String[] columnNames = new String[] {"ID", "Nome Completo", "Nome de Usuário", "E-mail", "Senha", "Telefone"};
-        daDefaultTableModel.setColumnIdentifiers(columnNames);
+        defaultTableModel.setColumnIdentifiers(columnNames);
 
+        ResultSet resultSet = UsuarioDAO.pegarTodos();
         try
         {
-            Connection conn = ConnectionFactory.criaConexao();
-            String sql = "select * from usuario";
-            PreparedStatement preparedStatement = (PreparedStatement) conn.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next())
             {
-                daDefaultTableModel.addRow(new Object[] {
+                defaultTableModel.addRow(new Object[] {
                         resultSet.getObject("id"),
                         resultSet.getObject("nomecompleto"),
                         resultSet.getObject("nomeusuario"),
@@ -79,22 +91,6 @@ public class GerenciarUsuario {
             e.printStackTrace();
         }
 
-        tableGerenciarUsuario.setModel(daDefaultTableModel);
-    }
-
-    private void deletarUsuario(String id)
-    {
-        try
-        {
-            Connection conn = ConnectionFactory.criaConexao();
-            String sql = "DELETE FROM usuario WHERE id = ?";
-            PreparedStatement preparedStatement = (PreparedStatement) conn.prepareStatement(sql);
-            preparedStatement.setString(1, id);
-            preparedStatement.execute();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+        tableGerenciarUsuario.setModel(defaultTableModel);
     }
 }
