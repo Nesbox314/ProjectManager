@@ -2,7 +2,8 @@ package forms;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class GerenciarUsuario {
     private JFrame frameGerenciarUsuario;
@@ -17,6 +18,13 @@ public class GerenciarUsuario {
         frameGerenciarUsuario.setVisible(true);
         frameGerenciarUsuario.setSize(640, 480);
         criarTabela();
+
+        buttonNovoUsuario.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new NovoUsuario();
+            }
+        });
     }
 
     private void criarTabela(){
