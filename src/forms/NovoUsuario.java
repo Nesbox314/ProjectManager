@@ -33,16 +33,21 @@ public class NovoUsuario {
         frameNovoUsuario.setVisible(true);
         frameNovoUsuario.setSize(640, 480);
 
-        voltarButton.addActionListener(new ActionListener() {
+        voltarButton.addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
+                new GerenciarUsuario();
                 frameNovoUsuario.dispose();
             }
         });
 
-        cadastrarButton.addActionListener(new ActionListener() {
+        cadastrarButton.addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
                 Usuario usuario = new Usuario();
                 usuario.setNomeCompleto(fieldNomeCompleto.getText());
                 usuario.setNomeUsuario(fieldNomeUsuario.getText());
@@ -55,8 +60,10 @@ public class NovoUsuario {
         });
     }
 
-    public Boolean cadastrarUsuario(Usuario usuario){
-        try {
+    public Boolean cadastrarUsuario(Usuario usuario)
+    {
+        try
+        {
             Connection conn = ConnectionFactory.criaConexao();
             String sql = "INSERT INTO usuario (nomecompleto, nomeusuario, email, senha, telefone) " +
                     "VALUES (?, ?, ?, ?, ?)";
@@ -68,8 +75,11 @@ public class NovoUsuario {
             preparedStatement.setString(5, usuario.getTelefone());
             preparedStatement.execute();
             JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso");
+            new GerenciarUsuario();
             frameNovoUsuario.dispose();
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             JOptionPane.showMessageDialog(null, "Houve algum erro no seu cadastro");
             e.printStackTrace();
             return false;

@@ -16,7 +16,8 @@ public class GerenciarUsuario {
     private JTable tableGerenciarUsuario;
     private JButton buttonNovoUsuario;
 
-    GerenciarUsuario(){
+    GerenciarUsuario()
+    {
         frameGerenciarUsuario = new JFrame("GerenciarUsuario");
         frameGerenciarUsuario.setContentPane(panelGerenciarUsuario);
         frameGerenciarUsuario.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -24,18 +25,22 @@ public class GerenciarUsuario {
         frameGerenciarUsuario.setSize(640, 480);
         criarTabela();
 
-        buttonNovoUsuario.addActionListener(new ActionListener() {
+        buttonNovoUsuario.addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
                 new NovoUsuario();
+                frameGerenciarUsuario.dispose();
             }
         });
     }
 
-    private void criarTabela(){
+    private void criarTabela()
+    {
         DefaultTableModel daDefaultTableModel = new DefaultTableModel(0, 0);
 
-        String[] columnNames = new String[] {"Nome Completo", "Nome de Usuário", "E-mail", "Senha", "Telefone"};
+        String[] columnNames = new String[] {"ID", "Nome Completo", "Nome de Usuário", "E-mail", "Senha", "Telefone"};
         daDefaultTableModel.setColumnIdentifiers(columnNames);
 
         try
@@ -47,6 +52,7 @@ public class GerenciarUsuario {
             while(resultSet.next())
             {
                 daDefaultTableModel.addRow(new Object[] {
+                        resultSet.getObject("id"),
                         resultSet.getObject("nomecompleto"),
                         resultSet.getObject("nomeusuario"),
                         resultSet.getObject("email"),
