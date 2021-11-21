@@ -9,6 +9,7 @@ public class PrimeiroMenu {
     private JPanel menuPanel;
     private JButton buttonUsuarios;
     private JButton buttonGerenciarProjetos;
+    private JButton sairButton;
 
     PrimeiroMenu(){
         jFramePrimeiroMenu = new JFrame("PrimeiroMenu");
@@ -29,6 +30,13 @@ public class PrimeiroMenu {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+            }
+        });
+
+        sairButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jFramePrimeiroMenu.dispose();
             }
         });
     }

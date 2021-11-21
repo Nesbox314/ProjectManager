@@ -60,7 +60,12 @@ public class GerenciarUsuario {
                 {
                     String id = tableModel.getValueAt(tableGerenciarUsuario.getSelectedRow(), 0).toString();
                     new EditarUsuario(id);
-                    frameGerenciarUsuario.dispose();;
+                    frameGerenciarUsuario.dispose();
+                }
+
+                if(tableGerenciarUsuario.getSelectedRowCount() > 1)
+                {
+                    JOptionPane.showMessageDialog(null, "Selecione apenas um registro!");
                 }
             }
         });
