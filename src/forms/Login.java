@@ -7,11 +7,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Login extends JFrame {
-    private JTextField emailInput;
-    private JTextField passwordInput;
     private JPanel loginPanel;
     private JLabel loginLabel;
     private JButton submit;
+    private JTextField inputNomeUsuario;
+    private JPasswordField inputPassword;
     private JLabel passwordLabel;
     private static JFrame jFrameLogin;
 
@@ -31,7 +31,8 @@ public class Login extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                Boolean autenticado = ProjectManagerUtils.autenticar(emailInput.getText(), passwordInput.getText());
+                Boolean autenticado =
+                        ProjectManagerUtils.autenticar(inputNomeUsuario.getText(), inputPassword.getText());
                 if(autenticado == true)
                 {
                     JOptionPane.showMessageDialog(null, "Você logou com sucesso");
