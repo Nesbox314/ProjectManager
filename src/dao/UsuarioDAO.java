@@ -1,6 +1,6 @@
 package dao;
 
-import factory.ConnectionFactory;
+import utils.ConnectionFactory;
 import model.Usuario;
 
 import javax.swing.*;
