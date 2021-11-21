@@ -1,14 +1,12 @@
-package forms;
+package forms.usuario;
 
 import dao.UsuarioDAO;
-import factory.ConnectionFactory;
+import forms.PrimeiroMenu;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class GerenciarUsuario {
@@ -20,7 +18,7 @@ public class GerenciarUsuario {
     private JButton editarUsuárioButton;
     private JButton voltarButton;
 
-    GerenciarUsuario()
+    public GerenciarUsuario()
     {
         frameGerenciarUsuario = new JFrame("GerenciarUsuario");
         frameGerenciarUsuario.setContentPane(panelGerenciarUsuario);

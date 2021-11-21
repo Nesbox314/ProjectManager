@@ -1,5 +1,7 @@
 package forms;
 
+import forms.usuario.GerenciarUsuario;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,7 +13,7 @@ public class PrimeiroMenu {
     private JButton buttonGerenciarProjetos;
     private JButton sairButton;
 
-    PrimeiroMenu(){
+    public PrimeiroMenu(){
         jFramePrimeiroMenu = new JFrame("PrimeiroMenu");
         jFramePrimeiroMenu.setContentPane(menuPanel);
         jFramePrimeiroMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
