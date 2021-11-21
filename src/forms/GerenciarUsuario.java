@@ -18,6 +18,7 @@ public class GerenciarUsuario {
     private JButton buttonNovoUsuario;
     private JButton deletarUsuárioButton;
     private JButton editarUsuárioButton;
+    private JButton voltarButton;
 
     GerenciarUsuario()
     {
@@ -61,6 +62,14 @@ public class GerenciarUsuario {
                     new EditarUsuario(id);
                     frameGerenciarUsuario.dispose();;
                 }
+            }
+        });
+
+        voltarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frameGerenciarUsuario.dispose();
+                new PrimeiroMenu();
             }
         });
     }

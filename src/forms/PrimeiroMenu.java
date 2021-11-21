@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PrimeiroMenu {
-    private static JFrame jFramePrimeiroMenu;
+    private JFrame jFramePrimeiroMenu;
     private JPanel menuPanel;
     private JButton buttonUsuarios;
     private JButton buttonGerenciarProjetos;

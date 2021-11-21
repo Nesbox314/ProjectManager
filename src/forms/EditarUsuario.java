@@ -5,6 +5,8 @@ import factory.ConnectionFactory;
 import model.Usuario;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,5 +41,34 @@ public class EditarUsuario {
         fieldNomeUsuario.setText(usuario.getNomeUsuario());
         fieldSenha.setText(usuario.getSenha());
         fieldTelefone.setText(usuario.getTelefone());
+
+        voltarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frameEditarUsuario.dispose();
+                new GerenciarUsuario();
+            }
+        });
+
+        editarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                UsuarioDAO.editar(id, getDadosEditados());
+                frameEditarUsuario.dispose();
+                new GerenciarUsuario();
+            }
+        });
+    }
+
+    private Usuario getDadosEditados()
+    {
+        Usuario usuario = new Usuario();
+        usuario.setTelefone(fieldTelefone.getText());
+        usuario.setNomeUsuario(fieldNomeUsuario.getText());
+        usuario.setSenha(fieldSenha.getText());
+        usuario.setEmail(fieldEmail.getText());
+        usuario.setNomeCompleto(fieldNomeCompleto.getText());
+
+        return usuario;
     }
 }

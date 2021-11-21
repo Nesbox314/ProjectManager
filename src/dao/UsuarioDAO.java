@@ -79,9 +79,24 @@ public class UsuarioDAO {
         }
     }
 
-    public static void editar()
+    public static void editar(String id, Usuario usuario)
     {
-
+        try
+        {
+            Connection conn = ConnectionFactory.criaConexao();
+            String sql = "INSERT INTO usuario (nomecompleto, nomeusuario, email, senha, telefone) " +
+                    "VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement preparedStatement = (PreparedStatement) conn.prepareStatement(sql);
+            preparedStatement.setString(1, usuario.getNomeCompleto());
+            preparedStatement.setString(2, usuario.getNomeUsuario());
+            preparedStatement.setString(3, usuario.getEmail());
+            preparedStatement.setString(4, usuario.getSenha());
+            preparedStatement.setString(5, usuario.getTelefone());
+            preparedStatement.execute();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void deletar(String id)
