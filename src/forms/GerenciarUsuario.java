@@ -15,6 +15,7 @@ public class GerenciarUsuario {
     private JPanel panelGerenciarUsuario;
     private JTable tableGerenciarUsuario;
     private JButton buttonNovoUsuario;
+    private JButton deletarUsuárioButton;
 
     GerenciarUsuario()
     {
@@ -32,6 +33,19 @@ public class GerenciarUsuario {
             {
                 new NovoUsuario();
                 frameGerenciarUsuario.dispose();
+            }
+        });
+
+        deletarUsuárioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DefaultTableModel tableModel = (DefaultTableModel) tableGerenciarUsuario.getModel();
+                if(tableGerenciarUsuario.getSelectedRowCount() == 1)
+                {
+                    String id = tableModel.getValueAt(tableGerenciarUsuario.getSelectedRow(), 0).toString();
+                    deletarUsuario(id);
+                    tableModel.removeRow(tableGerenciarUsuario.getSelectedRow());
+                }
             }
         });
     }
@@ -66,5 +80,21 @@ public class GerenciarUsuario {
         }
 
         tableGerenciarUsuario.setModel(daDefaultTableModel);
+    }
+
+    private void deletarUsuario(String id)
+    {
+        try
+        {
+            Connection conn = ConnectionFactory.criaConexao();
+            String sql = "DELETE FROM usuario WHERE id = ?";
+            PreparedStatement preparedStatement = (PreparedStatement) conn.prepareStatement(sql);
+            preparedStatement.setString(1, id);
+            preparedStatement.execute();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 }
