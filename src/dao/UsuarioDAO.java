@@ -79,7 +79,7 @@ public class UsuarioDAO {
         }
     }
 
-    public static void editar(String id, Usuario usuario)
+    public static void editar(Usuario usuario)
     {
         try
         {

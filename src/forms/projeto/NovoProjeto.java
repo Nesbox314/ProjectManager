@@ -41,6 +41,8 @@ public class NovoProjeto {
                 projeto.setDescrição(fieldDescricao.getText());
                 projeto.setIdUsuario(ProjectManagerUtils.idLoggedUser);
                 ProjetoDAO.salvar(projeto);
+                new GerenciarProjeto();
+                frameNovoProjeto.dispose();
             }
         });
     }

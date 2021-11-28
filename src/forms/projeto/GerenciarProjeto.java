@@ -40,7 +40,13 @@ public class GerenciarProjeto {
         buttonDeletarProjeto.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                DefaultTableModel tableModel = (DefaultTableModel) tableProjetos.getModel();
+                if(tableProjetos.getSelectedRowCount() == 1)
+                {
+                    String id = tableModel.getValueAt(tableProjetos.getSelectedRow(), 0).toString();
+                    ProjetoDAO.deletar(id);
+                    tableModel.removeRow(tableProjetos.getSelectedRow());
+                }
             }
         });
 

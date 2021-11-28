@@ -4,7 +4,7 @@ public class Projeto {
 
     int id;
     String nome;
-    String descrição;
+    String descricao;
     int idUsuario;
 
     public int getId() {
@@ -23,12 +23,12 @@ public class Projeto {
         this.nome = nome;
     }
 
-    public String getDescrição() {
-        return descrição;
+    public String getDescricao() {
+        return descricao;
     }
 
     public void setDescrição(String descrição) {
-        this.descrição = descrição;
+        this.descricao = descrição;
     }
 
     public int getIdUsuario() {

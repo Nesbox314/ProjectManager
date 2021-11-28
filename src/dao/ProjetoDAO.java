@@ -1,6 +1,7 @@
 package dao;
 
 import model.Projeto;
+import model.Usuario;
 import utils.ConnectionFactory;
 
 import javax.swing.*;
@@ -36,7 +37,7 @@ public class ProjetoDAO {
                     "VALUES (?, ?, ?)";
             PreparedStatement preparedStatement = (PreparedStatement) conn.prepareStatement(sql);
             preparedStatement.setString(1, projeto.getNome());
-            preparedStatement.setString(2, projeto.getDescrição());
+            preparedStatement.setString(2, projeto.getDescricao());
             preparedStatement.setInt(3, projeto.getIdUsuario());
             preparedStatement.execute();
             JOptionPane.showMessageDialog(null, "Projeto cadastrado com sucesso");
@@ -64,5 +65,37 @@ public class ProjetoDAO {
         }
 
         return resultSet;
+    }
+
+    public static void deletar(String id)
+    {
+        try
+        {
+            Connection conn = ConnectionFactory.criaConexao();
+            String sql = "DELETE FROM projeto WHERE id = ?";
+            PreparedStatement preparedStatement = (PreparedStatement) conn.prepareStatement(sql);
+            preparedStatement.setString(1, id);
+            preparedStatement.execute();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public static void editar(String id, Projeto projeto)
+    {
+        try
+        {
+            Connection conn = ConnectionFactory.criaConexao();
+            String sql = "INSERT INTO projeto (nome, descricao) VALUES (?, ?)";
+            PreparedStatement preparedStatement = (PreparedStatement) conn.prepareStatement(sql);
+            preparedStatement.setString(1, projeto.getNome());
+            preparedStatement.setString(2, projeto.getDescricao());
+            preparedStatement.execute();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

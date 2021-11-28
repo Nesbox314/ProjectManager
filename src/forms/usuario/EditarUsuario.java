@@ -49,7 +49,7 @@ public class EditarUsuario {
         editarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                UsuarioDAO.editar(id, getDadosEditados());
+                UsuarioDAO.editar(getDadosEditados());
                 frameEditarUsuario.dispose();
                 new GerenciarUsuario();
             }
