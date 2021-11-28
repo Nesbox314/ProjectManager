@@ -1,5 +1,6 @@
 package forms;
 
+import forms.projeto.GerenciarProjeto;
 import forms.usuario.GerenciarUsuario;
 
 import javax.swing.*;
@@ -13,25 +14,26 @@ public class PrimeiroMenu {
     private JButton buttonGerenciarProjetos;
     private JButton sairButton;
 
-    public PrimeiroMenu(){
+    public PrimeiroMenu() {
         jFramePrimeiroMenu = new JFrame("PrimeiroMenu");
         jFramePrimeiroMenu.setContentPane(menuPanel);
         jFramePrimeiroMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFramePrimeiroMenu.setVisible(true);
-        jFramePrimeiroMenu.setSize(640, 480);
+        jFramePrimeiroMenu.setSize(1280, 720);
 
         buttonUsuarios.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new GerenciarUsuario();
-                jFramePrimeiroMenu.setVisible(false);
+                jFramePrimeiroMenu.dispose();
             }
         });
 
         buttonGerenciarProjetos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new GerenciarProjeto();
+                jFramePrimeiroMenu.dispose();
             }
         });
 

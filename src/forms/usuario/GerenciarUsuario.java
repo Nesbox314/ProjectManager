@@ -24,7 +24,7 @@ public class GerenciarUsuario {
         frameGerenciarUsuario.setContentPane(panelGerenciarUsuario);
         frameGerenciarUsuario.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameGerenciarUsuario.setVisible(true);
-        frameGerenciarUsuario.setSize(640, 480);
+        frameGerenciarUsuario.setSize(1280, 720);
         criarTabela();
 
         buttonNovoUsuario.addActionListener(new ActionListener()

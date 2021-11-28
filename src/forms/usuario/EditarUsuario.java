@@ -29,7 +29,7 @@ public class EditarUsuario {
         frameEditarUsuario.setContentPane(panelEditarUsuario);
         frameEditarUsuario.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameEditarUsuario.setVisible(true);
-        frameEditarUsuario.setSize(640, 480);
+        frameEditarUsuario.setSize(1280, 720);
 
         Usuario usuario = UsuarioDAO.pegarPeloId(id);
         fieldNomeCompleto.setText(usuario.getNomeCompleto());

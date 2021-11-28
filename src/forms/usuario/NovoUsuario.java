@@ -28,7 +28,7 @@ public class NovoUsuario {
         frameNovoUsuario.setContentPane(panelNovoUsuario);
         frameNovoUsuario.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameNovoUsuario.setVisible(true);
-        frameNovoUsuario.setSize(640, 480);
+        frameNovoUsuario.setSize(1280, 720);
 
         voltarButton.addActionListener(new ActionListener()
         {

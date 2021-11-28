@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 
 public class ProjectManagerUtils {
 
+    public static int idLoggedUser;
+
     public static Boolean autenticar(String nomeUsuario, String senha)
     {
         try {
@@ -16,6 +18,7 @@ public class ProjectManagerUtils {
             preparedStatement.setString(2, senha);
             ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next()){
+                idLoggedUser = (int) resultSet.getObject("id");
                 return true;
             }
         } catch (Exception e) {
