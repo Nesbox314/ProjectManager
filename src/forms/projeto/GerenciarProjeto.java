@@ -20,6 +20,7 @@ public class GerenciarProjeto {
     private JButton buttonDeletarProjeto;
     private JButton buttonEditarProjeto;
     private JButton voltarButton;
+    private JButton abrirProjetoButton;
 
     public GerenciarProjeto() {
         frameGerenciarProjeto = new JFrame("GerenciarProjeto");
