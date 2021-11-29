@@ -27,8 +27,8 @@ public class Projeto {
         return descricao;
     }
 
-    public void setDescrição(String descrição) {
-        this.descricao = descrição;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public int getIdUsuario() {

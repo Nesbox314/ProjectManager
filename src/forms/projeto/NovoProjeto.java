@@ -38,7 +38,7 @@ public class NovoProjeto {
             public void actionPerformed(ActionEvent e) {
                 Projeto projeto = new Projeto();
                 projeto.setNome(fieldNome.getText());
-                projeto.setDescrição(fieldDescricao.getText());
+                projeto.setDescricao(fieldDescricao.getText());
                 projeto.setIdUsuario(ProjectManagerUtils.idLoggedUser);
                 ProjetoDAO.salvar(projeto);
                 new GerenciarProjeto();

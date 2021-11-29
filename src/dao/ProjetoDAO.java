@@ -88,14 +88,40 @@ public class ProjetoDAO {
         try
         {
             Connection conn = ConnectionFactory.criaConexao();
-            String sql = "INSERT INTO projeto (nome, descricao) VALUES (?, ?)";
+            String sql = "UPDATE projeto SET nome = ?, descricao = ? WHERE id = ?";
             PreparedStatement preparedStatement = (PreparedStatement) conn.prepareStatement(sql);
             preparedStatement.setString(1, projeto.getNome());
             preparedStatement.setString(2, projeto.getDescricao());
+            preparedStatement.setString(3, id);
             preparedStatement.execute();
         }
         catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static Projeto pegarPeloId(String id)
+    {
+        Projeto projeto = new Projeto();
+        try
+        {
+            Connection conn = ConnectionFactory.criaConexao();
+            String sql = "select * from projeto where id = ?";
+            PreparedStatement preparedStatement = (PreparedStatement) conn.prepareStatement(sql);
+            preparedStatement.setString(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next())
+            {
+                projeto.setId((Integer) resultSet.getObject("id"));
+                projeto.setNome((String) resultSet.getObject("nome"));
+                projeto.setDescricao((String) resultSet.getObject("descricao"));
+                projeto.setIdUsuario((int) resultSet.getObject("id_usuario"));
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return projeto;
     }
 }

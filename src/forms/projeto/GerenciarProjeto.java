@@ -53,7 +53,13 @@ public class GerenciarProjeto {
         buttonEditarProjeto.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                DefaultTableModel tableModel = (DefaultTableModel) tableProjetos.getModel();
+                if(tableProjetos.getSelectedRowCount() == 1)
+                {
+                    String id = tableModel.getValueAt(tableProjetos.getSelectedRow(), 0).toString();
+                    new EditarProjeto(id);
+                    frameGerenciarProjeto.dispose();
+                }
             }
         });
 
