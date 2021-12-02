@@ -41,6 +41,7 @@ public class PrimeiroMenu {
             @Override
             public void actionPerformed(ActionEvent e) {
                 jFramePrimeiroMenu.dispose();
+                Login.initLogin();
             }
         });
     }

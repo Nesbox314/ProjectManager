@@ -71,6 +71,13 @@ public class GerenciarProjeto {
                 frameGerenciarProjeto.dispose();
             }
         });
+
+        abrirProjetoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
 
     private void criarTabela()

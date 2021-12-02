@@ -15,8 +15,11 @@ public class Login extends JFrame {
     private JLabel passwordLabel;
     private static JFrame jFrameLogin;
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
+        initLogin();
+    }
+
+    public static void initLogin() {
         jFrameLogin = new JFrame("Login");
         jFrameLogin.setContentPane(new Login().loginPanel);
         jFrameLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -24,23 +27,17 @@ public class Login extends JFrame {
         jFrameLogin.setSize(1280, 720);
     }
 
-    public Login()
-    {
-        submit.addActionListener(new ActionListener()
-        {
+    public Login() {
+        submit.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e) {
                 Boolean autenticado =
                         ProjectManagerUtils.autenticar(inputNomeUsuario.getText(), inputPassword.getText());
-                if(autenticado == true)
-                {
+                if (autenticado == true) {
                     JOptionPane.showMessageDialog(null, "Você logou com sucesso");
                     new PrimeiroMenu();
                     jFrameLogin.setVisible(false);
-                }
-                else
-                {
+                } else {
                     JOptionPane.showMessageDialog(null, "Verifique o seu usuário e senha");
                 }
             }

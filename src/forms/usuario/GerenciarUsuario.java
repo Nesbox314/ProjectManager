@@ -18,8 +18,7 @@ public class GerenciarUsuario {
     private JButton editarUsuárioButton;
     private JButton voltarButton;
 
-    public GerenciarUsuario()
-    {
+    public GerenciarUsuario() {
         frameGerenciarUsuario = new JFrame("GerenciarUsuario");
         frameGerenciarUsuario.setContentPane(panelGerenciarUsuario);
         frameGerenciarUsuario.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -27,11 +26,9 @@ public class GerenciarUsuario {
         frameGerenciarUsuario.setSize(1280, 720);
         criarTabela();
 
-        buttonNovoUsuario.addActionListener(new ActionListener()
-        {
+        buttonNovoUsuario.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e) {
                 new NovoUsuario();
                 frameGerenciarUsuario.dispose();
             }
@@ -41,8 +38,7 @@ public class GerenciarUsuario {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DefaultTableModel tableModel = (DefaultTableModel) tableGerenciarUsuario.getModel();
-                if(tableGerenciarUsuario.getSelectedRowCount() == 1)
-                {
+                if (tableGerenciarUsuario.getSelectedRowCount() == 1) {
                     String id = tableModel.getValueAt(tableGerenciarUsuario.getSelectedRow(), 0).toString();
                     UsuarioDAO.deletar(id);
                     tableModel.removeRow(tableGerenciarUsuario.getSelectedRow());
@@ -54,15 +50,13 @@ public class GerenciarUsuario {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DefaultTableModel tableModel = (DefaultTableModel) tableGerenciarUsuario.getModel();
-                if(tableGerenciarUsuario.getSelectedRowCount() == 1)
-                {
+                if (tableGerenciarUsuario.getSelectedRowCount() == 1) {
                     String id = tableModel.getValueAt(tableGerenciarUsuario.getSelectedRow(), 0).toString();
                     new EditarUsuario(id);
                     frameGerenciarUsuario.dispose();
                 }
 
-                if(tableGerenciarUsuario.getSelectedRowCount() > 1)
-                {
+                if (tableGerenciarUsuario.getSelectedRowCount() > 1) {
                     JOptionPane.showMessageDialog(null, "Selecione apenas um registro!");
                 }
             }
@@ -77,19 +71,16 @@ public class GerenciarUsuario {
         });
     }
 
-    private void criarTabela()
-    {
+    private void criarTabela() {
         DefaultTableModel defaultTableModel = new DefaultTableModel(0, 0);
 
-        String[] columnNames = new String[] {"ID", "Nome Completo", "Nome de Usuário", "E-mail", "Senha", "Telefone"};
+        String[] columnNames = new String[]{"ID", "Nome Completo", "Nome de Usuário", "E-mail", "Senha", "Telefone"};
         defaultTableModel.setColumnIdentifiers(columnNames);
 
         ResultSet resultSet = UsuarioDAO.pegarTodos();
-        try
-        {
-            while(resultSet.next())
-            {
-                defaultTableModel.addRow(new Object[] {
+        try {
+            while (resultSet.next()) {
+                defaultTableModel.addRow(new Object[]{
                         resultSet.getObject("id"),
                         resultSet.getObject("nomecompleto"),
                         resultSet.getObject("nomeusuario"),
@@ -97,9 +88,7 @@ public class GerenciarUsuario {
                         resultSet.getObject("senha"),
                         resultSet.getObject("telefone")});
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
