@@ -3,6 +3,7 @@ package forms.projeto;
 import dao.ProjetoDAO;
 import dao.UsuarioDAO;
 import forms.PrimeiroMenu;
+import forms.requisito.GerenciarRequisito;
 import model.Usuario;
 import utils.ProjectManagerUtils;
 
@@ -48,6 +49,10 @@ public class GerenciarProjeto {
                     ProjetoDAO.deletar(id);
                     tableModel.removeRow(tableProjetos.getSelectedRow());
                 }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Selecione ao menos/apenas um registro!");
+                }
             }
         });
 
@@ -60,6 +65,10 @@ public class GerenciarProjeto {
                     String id = tableModel.getValueAt(tableProjetos.getSelectedRow(), 0).toString();
                     new EditarProjeto(id);
                     frameGerenciarProjeto.dispose();
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Selecione ao menos/apenas um registro!");
                 }
             }
         });
@@ -75,6 +84,19 @@ public class GerenciarProjeto {
         abrirProjetoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                DefaultTableModel tableModel = (DefaultTableModel) tableProjetos.getModel();
+                if(tableProjetos.getSelectedRowCount() == 1)
+                {
+                    String id = tableModel.getValueAt(tableProjetos.getSelectedRow(), 0).toString();
+                    String nome = tableModel.getValueAt(tableProjetos.getSelectedRow(), 1).toString();
+                    String descricao = tableModel.getValueAt(tableProjetos.getSelectedRow(), 2).toString();
+                    new GerenciarRequisito(id, nome, descricao);
+                    frameGerenciarProjeto.dispose();
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Selecione ao menos/apenas um registro!");
+                }
 
             }
         });
