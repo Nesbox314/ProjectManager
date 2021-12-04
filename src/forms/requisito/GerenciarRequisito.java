@@ -35,7 +35,8 @@ public class GerenciarRequisito {
         novoRequisitoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new NovoRequisito();
+                frameGerenciarRequisito.dispose();
             }
         });
         editarRequisitoButton.addActionListener(new ActionListener() {
