@@ -85,7 +85,7 @@
           <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Editar"/>
+          <text value="Salvar"/>
         </properties>
       </component>
       <component id="eaeeb" class="javax.swing.JButton" binding="voltarButton" default-binding="true">

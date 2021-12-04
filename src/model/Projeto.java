@@ -2,10 +2,10 @@ package model;
 
 public class Projeto {
 
-    int id;
-    String nome;
-    String descricao;
-    int idUsuario;
+    private int id;
+    private String nome;
+    private String descricao;
+    private int idUsuario;
 
     public int getId() {
         return id;

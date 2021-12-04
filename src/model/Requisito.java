@@ -2,22 +2,22 @@ package model;
 
 public class Requisito {
 
-    int id;
-    int idProjeto;
-    String nome;
-    String descricao;
-    String modulo;
-    String funcionalidade;
-    String datacriacao;
-    int idAutor;
-    String fase;
-    String complexidade;
-    String prioridade;
-    String versao;
-    String ultimoautor;
-    String dataultimacriacao;
-    String esforco;
-    String estado;
+    private int id;
+    private int idProjeto;
+    private String nome;
+    private String descricao;
+    private String modulo;
+    private String funcionalidade;
+    private String datacriacao;
+    private int idAutor;
+    private String fase;
+    private String complexidade;
+    private String prioridade;
+    private String versao;
+    private String ultimoautor;
+    private String dataultimacriacao;
+    private int esforco;
+    private int estado;
 
     public int getId() {
         return id;
@@ -131,19 +131,19 @@ public class Requisito {
         this.dataultimacriacao = dataultimacriacao;
     }
 
-    public String getEsforco() {
+    public int getEsforco() {
         return esforco;
     }
 
-    public void setEsforco(String esforco) {
+    public void setEsforco(int esforco) {
         this.esforco = esforco;
     }
 
-    public String getEstado() {
+    public int getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
     }
 }

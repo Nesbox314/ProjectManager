@@ -2,12 +2,12 @@ package model;
 
 public class Usuario {
 
-    int id;
-    String nomeCompleto;
-    String nomeUsuario;
-    String email;
-    String senha;
-    String telefone;
+    private int id;
+    private String nomeCompleto;
+    private String nomeUsuario;
+    private String email;
+    private String senha;
+    private String telefone;
 
     public int getId() {
         return id;
