@@ -6,6 +6,7 @@ import utils.ConnectionFactory;
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class RequisitoDAO {
 
@@ -37,5 +38,25 @@ public class RequisitoDAO {
             JOptionPane.showMessageDialog(null, "Houve algum erro no seu cadastro");
             e.printStackTrace();
         }
+    }
+
+    public static ResultSet pegarTodos()
+    {
+        ResultSet resultSet = null;
+        try
+        {
+            Connection conn = ConnectionFactory.criaConexao();
+            String sql = "select id, id_projeto, nome, descricao, modulo, funcionalidade, datacriacao, " +
+                    "id_autor, esforco, estado from requisito";
+            PreparedStatement preparedStatement = (PreparedStatement) conn.prepareStatement(sql);
+            resultSet = preparedStatement.executeQuery();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+
+        return resultSet;
     }
 }

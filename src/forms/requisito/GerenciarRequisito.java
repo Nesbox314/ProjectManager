@@ -1,11 +1,13 @@
 package forms.requisito;
 
+import dao.RequisitoDAO;
 import forms.projeto.GerenciarProjeto;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 
 public class GerenciarRequisito {
     private JFrame frameGerenciarRequisito;
@@ -67,23 +69,29 @@ public class GerenciarRequisito {
                 "Data de Criação", "Autor", "Esforço estimado em horas", "Estado"};
         defaultTableModel.setColumnIdentifiers(columnNames);
 
-        /*ResultSet resultSet = ProjetoDAO.pegarTodos();
+        ResultSet resultSet = RequisitoDAO.pegarTodos();
         try
         {
             while(resultSet.next())
             {
                 defaultTableModel.addRow(new Object[] {
                         resultSet.getObject("id"),
+                        resultSet.getObject("id_projeto"),
                         resultSet.getObject("nome"),
                         resultSet.getObject("descricao"),
-                        resultSet.getObject("id_usuario")
+                        resultSet.getObject("modulo"),
+                        resultSet.getObject("funcionalidade"),
+                        resultSet.getObject("datacriacao"),
+                        resultSet.getObject("id_autor"),
+                        resultSet.getObject("esforco"),
+                        resultSet.getObject("estado")
                 });
             }
         }
         catch (Exception e)
         {
             e.printStackTrace();
-        }*/
+        }
 
         tableGerenciarRequisito.setModel(defaultTableModel);
     }
