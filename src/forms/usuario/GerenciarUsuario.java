@@ -41,10 +41,12 @@ public class GerenciarUsuario {
                 if (tableGerenciarUsuario.getSelectedRowCount() == 1) {
                     String id = tableModel.getValueAt(tableGerenciarUsuario.getSelectedRow(), 0).toString();
                     Boolean sucesso = UsuarioDAO.deletar(id);
-                    if(sucesso == true)
-                    {
+                    if (sucesso == true) {
                         tableModel.removeRow(tableGerenciarUsuario.getSelectedRow());
                     }
+                }
+                else
+                {
 
                 }
             }
@@ -59,9 +61,9 @@ public class GerenciarUsuario {
                     new EditarUsuario(id);
                     frameGerenciarUsuario.dispose();
                 }
-
-                if (tableGerenciarUsuario.getSelectedRowCount() > 1) {
-                    JOptionPane.showMessageDialog(null, "Selecione apenas um registro!");
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Selecione ao menos/apenas um registro!");
                 }
             }
         });
