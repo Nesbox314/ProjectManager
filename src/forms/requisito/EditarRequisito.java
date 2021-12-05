@@ -53,6 +53,8 @@ public class EditarRequisito {
             @Override
             public void actionPerformed(ActionEvent e) {
                 RequisitoDAO.editar(id, pegarValoresCampos());
+                frameEditarRequisito.dispose();
+                new GerenciarRequisito(id, nome, descricao);
             }
         });
     }
