@@ -47,4 +47,14 @@ public class ProjectManagerUtils {
             return true;
         }
     }
+
+    public static Boolean validaCampoRequisito(String nome, String descricao) {
+        if (nome == null || descricao == null) {
+            return false;
+        } else if (nome.equals("") || descricao.equals("")) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

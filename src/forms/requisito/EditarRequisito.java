@@ -3,6 +3,7 @@ package forms.requisito;
 import dao.ProjetoDAO;
 import dao.RequisitoDAO;
 import model.Requisito;
+import utils.ProjectManagerUtils;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -34,7 +35,7 @@ public class EditarRequisito {
     private JButton voltarButton;
     private JPanel panelEditarRequisito;
 
-    public EditarRequisito(String id, String nome, String descricao){
+    public EditarRequisito(String id, String nome, String descricao) {
         frameEditarRequisito = new JFrame("GerenciarRequisito");
         frameEditarRequisito.setContentPane(panelEditarRequisito);
         frameEditarRequisito.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,9 +53,12 @@ public class EditarRequisito {
         salvarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                RequisitoDAO.editar(id, pegarValoresCampos());
-                frameEditarRequisito.dispose();
-                new GerenciarRequisito(id, nome, descricao);
+                Requisito requisito = pegarValoresCampos();
+                if (ProjectManagerUtils.validaCampoRequisito(requisito.getNome(), requisito.getDescricao())) {
+                    RequisitoDAO.editar(id, requisito);
+                    frameEditarRequisito.dispose();
+                    new GerenciarRequisito(id, nome, descricao);
+                }
             }
         });
     }

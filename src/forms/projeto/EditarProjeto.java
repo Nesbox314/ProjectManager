@@ -49,7 +49,7 @@ public class EditarProjeto {
                     ProjetoDAO.editar(id, projeto);
                     new GerenciarProjeto();
                     frameEditarProjeto.dispose();
-                }  else {
+                } else {
                     JOptionPane.showMessageDialog(null, "O campo nome é obrigatório!");
                 }
 

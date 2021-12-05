@@ -66,9 +66,15 @@ public class NovoRequisito {
                 requisito.setEstado((String) comboEstado.getSelectedItem());
                 requisito.setDatacriacao(new Date().toString());
                 requisito.setDataultimacriacao(new Date().toString());
-                RequisitoDAO.salvar(requisito);
-                frameNovoRequisito.dispose();
-                new GerenciarRequisito(id, nome, descricao);
+
+                if(ProjectManagerUtils.validaCampoRequisito(requisito.getNome(), requisito.getDescricao())){
+                    RequisitoDAO.salvar(requisito);
+                    frameNovoRequisito.dispose();
+                    new GerenciarRequisito(id, nome, descricao);
+                } else {
+                    JOptionPane.showMessageDialog(null, "O campo nome/descrição é obrigatório!");
+                }
+
             }
         });
     }
