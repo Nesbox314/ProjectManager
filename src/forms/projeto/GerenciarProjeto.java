@@ -46,8 +46,10 @@ public class GerenciarProjeto {
                 if(tableProjetos.getSelectedRowCount() == 1)
                 {
                     String id = tableModel.getValueAt(tableProjetos.getSelectedRow(), 0).toString();
-                    ProjetoDAO.deletar(id);
-                    tableModel.removeRow(tableProjetos.getSelectedRow());
+                    Boolean sucesso = ProjetoDAO.deletar(id);
+                    if(sucesso == true) {
+                        tableModel.removeRow(tableProjetos.getSelectedRow());
+                    }
                 }
                 else
                 {

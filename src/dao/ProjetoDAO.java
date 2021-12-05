@@ -43,7 +43,7 @@ public class ProjetoDAO {
         }
     }
 
-    public static void deletar(String id) {
+    public static Boolean deletar(String id) {
         try {
             Connection conn = ConnectionFactory.criaConexao();
             String sql = "DELETE FROM projeto WHERE id = ?";
@@ -51,15 +51,18 @@ public class ProjetoDAO {
             preparedStatement.setString(1, id);
             preparedStatement.execute();
             JOptionPane.showMessageDialog(null, "Projeto deletado com sucesso");
+            return true;
         }
         catch (SQLIntegrityConstraintViolationException e)
         {
             JOptionPane.showMessageDialog(null, "Não foi possível deletar o Projeto, " +
                     "pois há requisitos vinculados a ele!");
+            return false;
         }
         catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Houve algum problema com a sua deleção");
             e.printStackTrace();
+            return false;
         }
     }
 
