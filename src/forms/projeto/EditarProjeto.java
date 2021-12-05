@@ -2,6 +2,7 @@ package forms.projeto;
 
 import dao.ProjetoDAO;
 import model.Projeto;
+import utils.ProjectManagerUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,9 +44,15 @@ public class EditarProjeto {
                 Projeto projeto = new Projeto();
                 projeto.setNome(fieldNome.getText());
                 projeto.setDescricao(fieldDescricao.getText());
-                ProjetoDAO.editar(id, projeto);
-                new GerenciarProjeto();
-                frameEditarProjeto.dispose();
+
+                if (ProjectManagerUtils.validaCampoProjeto(projeto.getNome())) {
+                    ProjetoDAO.editar(id, projeto);
+                    new GerenciarProjeto();
+                    frameEditarProjeto.dispose();
+                }  else {
+                    JOptionPane.showMessageDialog(null, "O campo nome é obrigatório!");
+                }
+
             }
         });
     }

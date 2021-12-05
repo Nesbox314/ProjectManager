@@ -8,8 +8,7 @@ public class ProjectManagerUtils {
 
     public static int idLoggedUser;
 
-    public static Boolean autenticar(String nomeUsuario, String senha)
-    {
+    public static Boolean autenticar(String nomeUsuario, String senha) {
         try {
             Connection conn = ConnectionFactory.criaConexao();
             String sql = "select * from usuario where nomeusuario = ? and senha = ?";
@@ -17,7 +16,7 @@ public class ProjectManagerUtils {
             preparedStatement.setString(1, nomeUsuario);
             preparedStatement.setString(2, senha);
             ResultSet resultSet = preparedStatement.executeQuery();
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 idLoggedUser = (int) resultSet.getObject("id");
                 return true;
             }
@@ -29,17 +28,22 @@ public class ProjectManagerUtils {
         return false;
     }
 
-    public static Boolean validaCampoUsuario(String nomeUsuario, String senha){
-        if(nomeUsuario == null || senha == null)
-        {
+    public static Boolean validaCampoUsuario(String nomeUsuario, String senha) {
+        if (nomeUsuario == null || senha == null) {
             return false;
-        }
-        else if (nomeUsuario.equals("") || senha.equals(""))
-        {
+        } else if (nomeUsuario.equals("") || senha.equals("")) {
             return false;
+        } else {
+            return true;
         }
-        else
-        {
+    }
+
+    public static Boolean validaCampoProjeto(String nomeProjeto) {
+        if (nomeProjeto == null) {
+            return false;
+        } else if (nomeProjeto.equals("")) {
+            return false;
+        } else {
             return true;
         }
     }

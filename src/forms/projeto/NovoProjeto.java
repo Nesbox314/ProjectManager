@@ -18,7 +18,7 @@ public class NovoProjeto {
     private JLabel labelDescricao;
     private JLabel labelNome;
 
-    NovoProjeto() {
+    public NovoProjeto() {
         frameNovoProjeto = new JFrame("NovoProjeto");
         frameNovoProjeto.setContentPane(panelNovoProjeto);
         frameNovoProjeto.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -40,9 +40,15 @@ public class NovoProjeto {
                 projeto.setNome(fieldNome.getText());
                 projeto.setDescricao(fieldDescricao.getText());
                 projeto.setIdUsuario(ProjectManagerUtils.idLoggedUser);
-                ProjetoDAO.salvar(projeto);
-                new GerenciarProjeto();
-                frameNovoProjeto.dispose();
+
+                if (ProjectManagerUtils.validaCampoProjeto(projeto.getNome())) {
+                    ProjetoDAO.salvar(projeto);
+                    new GerenciarProjeto();
+                    frameNovoProjeto.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "O campo nome é obrigatório!");
+                }
+
             }
         });
     }
