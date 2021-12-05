@@ -59,4 +59,20 @@ public class RequisitoDAO {
 
         return resultSet;
     }
+
+    public static void deletar(String id)
+    {
+        try
+        {
+            Connection conn = ConnectionFactory.criaConexao();
+            String sql = "DELETE FROM requisito WHERE id = ?";
+            PreparedStatement preparedStatement = (PreparedStatement) conn.prepareStatement(sql);
+            preparedStatement.setString(1, id);
+            preparedStatement.execute();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
 }

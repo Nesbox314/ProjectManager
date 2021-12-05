@@ -1,6 +1,7 @@
 package forms.requisito;
 
 import dao.RequisitoDAO;
+import forms.projeto.EditarProjeto;
 import forms.projeto.GerenciarProjeto;
 
 import javax.swing.*;
@@ -50,7 +51,17 @@ public class GerenciarRequisito {
         deletarRequisitoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                DefaultTableModel tableModel = (DefaultTableModel) tableGerenciarRequisito.getModel();
+                if(tableGerenciarRequisito.getSelectedRowCount() == 1)
+                {
+                    String id = tableModel.getValueAt(tableGerenciarRequisito.getSelectedRow(), 0).toString();
+                    RequisitoDAO.deletar(id);
+                    tableModel.removeRow(tableGerenciarRequisito.getSelectedRow());
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Selecione ao menos/apenas um registro!");
+                }
             }
         });
         voltarButton.addActionListener(new ActionListener() {
