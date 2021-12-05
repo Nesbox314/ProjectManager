@@ -40,8 +40,12 @@ public class GerenciarUsuario {
                 DefaultTableModel tableModel = (DefaultTableModel) tableGerenciarUsuario.getModel();
                 if (tableGerenciarUsuario.getSelectedRowCount() == 1) {
                     String id = tableModel.getValueAt(tableGerenciarUsuario.getSelectedRow(), 0).toString();
-                    UsuarioDAO.deletar(id);
-                    tableModel.removeRow(tableGerenciarUsuario.getSelectedRow());
+                    Boolean sucesso = UsuarioDAO.deletar(id);
+                    if(sucesso == true)
+                    {
+                        tableModel.removeRow(tableGerenciarUsuario.getSelectedRow());
+                    }
+
                 }
             }
         });

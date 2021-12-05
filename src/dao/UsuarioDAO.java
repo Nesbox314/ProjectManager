@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 public class UsuarioDAO {
 
@@ -94,13 +95,15 @@ public class UsuarioDAO {
             preparedStatement.setString(5, usuario.getTelefone());
             preparedStatement.setString(6, id);
             preparedStatement.execute();
+            JOptionPane.showMessageDialog(null, "Usuário editado com sucesso");
         }
         catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Houve algum erro na sua edição");
             e.printStackTrace();
         }
     }
 
-    public static void deletar(String id)
+    public static Boolean deletar(String id)
     {
         try
         {
@@ -109,10 +112,20 @@ public class UsuarioDAO {
             PreparedStatement preparedStatement = (PreparedStatement) conn.prepareStatement(sql);
             preparedStatement.setString(1, id);
             preparedStatement.execute();
+            JOptionPane.showMessageDialog(null, "Usuário deletado com sucesso!");
+            return true;
+        }
+        catch (SQLIntegrityConstraintViolationException e)
+        {
+            JOptionPane.showMessageDialog(null, "Não foi possível deletar o usuário, " +
+                    "pois há projetos vinculados a ele!");
+            return false;
         }
         catch (Exception e)
         {
+            JOptionPane.showMessageDialog(null, "Houve algum problema com a sua deleção!");
             e.printStackTrace();
+            return false;
         }
     }
 }

@@ -35,7 +35,7 @@ public class RequisitoDAO {
             preparedStatement.setInt(14, requisito.getEsforco());
             preparedStatement.setString(15, requisito.getEstado());
             preparedStatement.execute();
-            JOptionPane.showMessageDialog(null, "Projeto cadastrado com sucesso");
+            JOptionPane.showMessageDialog(null, "Requisito cadastrado com sucesso");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Houve algum erro no seu cadastro");
             e.printStackTrace();
@@ -71,9 +71,11 @@ public class RequisitoDAO {
             PreparedStatement preparedStatement = (PreparedStatement) conn.prepareStatement(sql);
             preparedStatement.setString(1, id);
             preparedStatement.execute();
+            JOptionPane.showMessageDialog(null, "Requisito deletado com sucesso");
         }
         catch (Exception e)
         {
+            JOptionPane.showMessageDialog(null, "Houve algum problema na sua deleção");
             e.printStackTrace();
         }
     }
@@ -101,8 +103,10 @@ public class RequisitoDAO {
             preparedStatement.setString(12, requisito.getEstado());
             preparedStatement.setString(13, id);
             preparedStatement.execute();
+            JOptionPane.showMessageDialog(null, "Requisito editado com sucesso");
         }
         catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Houve algum erro na sua edição");
             e.printStackTrace();
         }
     }
