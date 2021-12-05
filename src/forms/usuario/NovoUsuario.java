@@ -2,6 +2,7 @@ package forms.usuario;
 
 import dao.UsuarioDAO;
 import model.Usuario;
+import utils.ProjectManagerUtils;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -30,30 +31,32 @@ public class NovoUsuario {
         frameNovoUsuario.setVisible(true);
         frameNovoUsuario.setSize(1280, 720);
 
-        voltarButton.addActionListener(new ActionListener()
-        {
+        voltarButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e) {
                 new GerenciarUsuario();
                 frameNovoUsuario.dispose();
             }
         });
 
-        cadastrarButton.addActionListener(new ActionListener()
-        {
+        cadastrarButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e) {
                 Usuario usuario = new Usuario();
                 usuario.setNomeCompleto(fieldNomeCompleto.getText());
                 usuario.setNomeUsuario(fieldNomeUsuario.getText());
                 usuario.setEmail(fieldEmail.getText());
                 usuario.setSenha(fieldSenha.getText());
                 usuario.setTelefone(fieldTelefone.getText());
-                UsuarioDAO.salvar(usuario);
-                new GerenciarUsuario();
-                frameNovoUsuario.dispose();
+
+                if (ProjectManagerUtils.validaCampoUsuario(usuario.getNomeUsuario(), usuario.getSenha())) {
+                    UsuarioDAO.salvar(usuario);
+                    new GerenciarUsuario();
+                    frameNovoUsuario.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Os campos usuário/senha são obrigatórios");
+                }
+
             }
         });
     }

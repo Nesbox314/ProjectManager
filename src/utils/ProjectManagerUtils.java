@@ -29,7 +29,18 @@ public class ProjectManagerUtils {
         return false;
     }
 
-    public static void createTables(){
-
+    public static Boolean validaCampoUsuario(String nomeUsuario, String senha){
+        if(nomeUsuario == null || senha == null)
+        {
+            return false;
+        }
+        else if (nomeUsuario.equals("") || senha.equals(""))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 }
