@@ -43,16 +43,13 @@ public class GerenciarProjeto {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DefaultTableModel tableModel = (DefaultTableModel) tableProjetos.getModel();
-                if(tableProjetos.getSelectedRowCount() == 1)
-                {
+                if (tableProjetos.getSelectedRowCount() == 1) {
                     String id = tableModel.getValueAt(tableProjetos.getSelectedRow(), 0).toString();
                     Boolean sucesso = ProjetoDAO.deletar(id);
-                    if(sucesso == true) {
+                    if (sucesso == true) {
                         tableModel.removeRow(tableProjetos.getSelectedRow());
                     }
-                }
-                else
-                {
+                } else {
                     JOptionPane.showMessageDialog(null, "Selecione ao menos/apenas um registro!");
                 }
             }
@@ -62,14 +59,11 @@ public class GerenciarProjeto {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DefaultTableModel tableModel = (DefaultTableModel) tableProjetos.getModel();
-                if(tableProjetos.getSelectedRowCount() == 1)
-                {
+                if (tableProjetos.getSelectedRowCount() == 1) {
                     String id = tableModel.getValueAt(tableProjetos.getSelectedRow(), 0).toString();
                     new EditarProjeto(id);
                     frameGerenciarProjeto.dispose();
-                }
-                else
-                {
+                } else {
                     JOptionPane.showMessageDialog(null, "Selecione ao menos/apenas um registro!");
                 }
             }
@@ -87,16 +81,13 @@ public class GerenciarProjeto {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DefaultTableModel tableModel = (DefaultTableModel) tableProjetos.getModel();
-                if(tableProjetos.getSelectedRowCount() == 1)
-                {
+                if (tableProjetos.getSelectedRowCount() == 1) {
                     String id = tableModel.getValueAt(tableProjetos.getSelectedRow(), 0).toString();
                     String nome = tableModel.getValueAt(tableProjetos.getSelectedRow(), 1).toString();
                     String descricao = tableModel.getValueAt(tableProjetos.getSelectedRow(), 2).toString();
                     new GerenciarRequisito(id, nome, descricao);
                     frameGerenciarProjeto.dispose();
-                }
-                else
-                {
+                } else {
                     JOptionPane.showMessageDialog(null, "Selecione ao menos/apenas um registro!");
                 }
 
@@ -104,28 +95,23 @@ public class GerenciarProjeto {
         });
     }
 
-    private void criarTabela()
-    {
+    private void criarTabela() {
         DefaultTableModel defaultTableModel = new DefaultTableModel(0, 0);
 
-        String[] columnNames = new String[] {"ID", "Nome", "Descrição", "Usuário Proprietário"};
+        String[] columnNames = new String[]{"ID", "Nome", "Descrição", "Usuário Proprietário"};
         defaultTableModel.setColumnIdentifiers(columnNames);
 
         ResultSet resultSet = ProjetoDAO.pegarTodos();
-        try
-        {
-            while(resultSet.next())
-            {
-                defaultTableModel.addRow(new Object[] {
+        try {
+            while (resultSet.next()) {
+                defaultTableModel.addRow(new Object[]{
                         resultSet.getObject("id"),
                         resultSet.getObject("nome"),
                         resultSet.getObject("descricao"),
                         resultSet.getObject("id_usuario")
                 });
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

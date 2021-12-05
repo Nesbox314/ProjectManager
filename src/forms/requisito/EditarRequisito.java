@@ -58,6 +58,8 @@ public class EditarRequisito {
                     RequisitoDAO.editar(id, requisito);
                     frameEditarRequisito.dispose();
                     new GerenciarRequisito(id, nome, descricao);
+                } else {
+                    JOptionPane.showMessageDialog(null, "O campo nome/descrição é obrigatório!");
                 }
             }
         });

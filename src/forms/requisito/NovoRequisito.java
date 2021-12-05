@@ -35,7 +35,7 @@ public class NovoRequisito {
     private JButton salvarButton;
     private JButton voltarButton;
 
-    NovoRequisito(String id, String nome, String descricao){
+    NovoRequisito(String id, String nome, String descricao) {
         frameNovoRequisito = new JFrame("GerenciarRequisito");
         frameNovoRequisito.setContentPane(panelNovoRequisito);
         frameNovoRequisito.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -67,7 +67,7 @@ public class NovoRequisito {
                 requisito.setDatacriacao(new Date().toString());
                 requisito.setDataultimacriacao(new Date().toString());
 
-                if(ProjectManagerUtils.validaCampoRequisito(requisito.getNome(), requisito.getDescricao())){
+                if (ProjectManagerUtils.validaCampoRequisito(requisito.getNome(), requisito.getDescricao())) {
                     RequisitoDAO.salvar(requisito);
                     frameNovoRequisito.dispose();
                     new GerenciarRequisito(id, nome, descricao);

@@ -46,14 +46,11 @@ public class GerenciarRequisito {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DefaultTableModel tableModel = (DefaultTableModel) tableGerenciarRequisito.getModel();
-                if(tableGerenciarRequisito.getSelectedRowCount() == 1)
-                {
+                if (tableGerenciarRequisito.getSelectedRowCount() == 1) {
                     String id = tableModel.getValueAt(tableGerenciarRequisito.getSelectedRow(), 0).toString();
                     new EditarRequisito(id, nome, descricao);
                     frameGerenciarRequisito.dispose();
-                }
-                else
-                {
+                } else {
                     JOptionPane.showMessageDialog(null, "Selecione ao menos/apenas um registro!");
                 }
             }
@@ -62,14 +59,11 @@ public class GerenciarRequisito {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DefaultTableModel tableModel = (DefaultTableModel) tableGerenciarRequisito.getModel();
-                if(tableGerenciarRequisito.getSelectedRowCount() == 1)
-                {
+                if (tableGerenciarRequisito.getSelectedRowCount() == 1) {
                     String id = tableModel.getValueAt(tableGerenciarRequisito.getSelectedRow(), 0).toString();
                     RequisitoDAO.deletar(id);
                     tableModel.removeRow(tableGerenciarRequisito.getSelectedRow());
-                }
-                else
-                {
+                } else {
                     JOptionPane.showMessageDialog(null, "Selecione ao menos/apenas um registro!");
                 }
             }
@@ -91,11 +85,9 @@ public class GerenciarRequisito {
         defaultTableModel.setColumnIdentifiers(columnNames);
 
         ResultSet resultSet = RequisitoDAO.pegarTodos();
-        try
-        {
-            while(resultSet.next())
-            {
-                defaultTableModel.addRow(new Object[] {
+        try {
+            while (resultSet.next()) {
+                defaultTableModel.addRow(new Object[]{
                         resultSet.getObject("id"),
                         resultSet.getObject("id_projeto"),
                         resultSet.getObject("nome"),
@@ -108,9 +100,7 @@ public class GerenciarRequisito {
                         resultSet.getObject("estado")
                 });
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

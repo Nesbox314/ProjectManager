@@ -44,9 +44,7 @@ public class GerenciarUsuario {
                     if (sucesso == true) {
                         tableModel.removeRow(tableGerenciarUsuario.getSelectedRow());
                     }
-                }
-                else
-                {
+                } else {
 
                 }
             }
@@ -60,9 +58,7 @@ public class GerenciarUsuario {
                     String id = tableModel.getValueAt(tableGerenciarUsuario.getSelectedRow(), 0).toString();
                     new EditarUsuario(id);
                     frameGerenciarUsuario.dispose();
-                }
-                else
-                {
+                } else {
                     JOptionPane.showMessageDialog(null, "Selecione ao menos/apenas um registro!");
                 }
             }
