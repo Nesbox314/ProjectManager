@@ -45,7 +45,17 @@ public class GerenciarRequisito {
         editarRequisitoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                DefaultTableModel tableModel = (DefaultTableModel) tableGerenciarRequisito.getModel();
+                if(tableGerenciarRequisito.getSelectedRowCount() == 1)
+                {
+                    String id = tableModel.getValueAt(tableGerenciarRequisito.getSelectedRow(), 0).toString();
+                    new EditarRequisito(id, nome, descricao);
+                    frameGerenciarRequisito.dispose();
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Selecione ao menos/apenas um registro!");
+                }
             }
         });
         deletarRequisitoButton.addActionListener(new ActionListener() {

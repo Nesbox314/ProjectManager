@@ -63,7 +63,7 @@ public class NovoRequisito {
                 requisito.setPrioridade(inputPrioridade.getText());
                 requisito.setVersao(inputVersao.getText());
                 requisito.setEsforco(Integer.parseInt(inputEsforco.getText()));
-                requisito.setEstado(comboEstado.getSelectedIndex());
+                requisito.setEstado((String) comboEstado.getSelectedItem());
                 requisito.setDatacriacao(new Date().toString());
                 requisito.setDataultimacriacao(new Date().toString());
                 RequisitoDAO.salvar(requisito);

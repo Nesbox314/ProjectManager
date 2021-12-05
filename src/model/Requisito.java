@@ -17,7 +17,7 @@ public class Requisito {
     private String ultimoautor;
     private String dataultimacriacao;
     private int esforco;
-    private int estado;
+    private String estado;
 
     public int getId() {
         return id;
@@ -139,11 +139,11 @@ public class Requisito {
         this.esforco = esforco;
     }
 
-    public int getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 }
