@@ -17,6 +17,7 @@ public class Login extends JFrame {
 
     public static void main(String[] args) {
         initLogin();
+        ProjectManagerUtils.createTables();
     }
 
     public static void initLogin() {
