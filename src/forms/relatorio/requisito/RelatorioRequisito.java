@@ -23,7 +23,8 @@ public class RelatorioRequisito {
         gerarRelatórioButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                frameRelatorioRequisito.dispose();
+                new RelatorioRequisitoGerado(inputNome.getText());
             }
         });
 
