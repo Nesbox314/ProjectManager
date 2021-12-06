@@ -11,6 +11,20 @@ import java.sql.SQLIntegrityConstraintViolationException;
 
 public class ProjetoDAO {
 
+    public static ResultSet pegarPeloNome(String nome) {
+        ResultSet resultSet = null;
+        try {
+            Connection conn = ConnectionFactory.criaConexao();
+            String sql = "SELECT * FROM projeto WHERE nome LIKE ?";
+            PreparedStatement preparedStatement = (PreparedStatement) conn.prepareStatement(sql);
+            preparedStatement.setString(1, nome);
+            resultSet = preparedStatement.executeQuery();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return resultSet;
+    }
+
     public static ResultSet pegarTodos() {
         ResultSet resultSet = null;
         try {

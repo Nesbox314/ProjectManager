@@ -1,6 +1,7 @@
 package forms;
 
 import forms.projeto.GerenciarProjeto;
+import forms.relatorio.RelatorioMenu;
 import forms.usuario.GerenciarUsuario;
 
 import javax.swing.*;
@@ -13,6 +14,7 @@ public class PrimeiroMenu {
     private JButton buttonUsuarios;
     private JButton buttonGerenciarProjetos;
     private JButton sairButton;
+    private JButton relatóriosButton;
 
     public PrimeiroMenu() {
         jFramePrimeiroMenu = new JFrame("PrimeiroMenu");
@@ -42,6 +44,14 @@ public class PrimeiroMenu {
             public void actionPerformed(ActionEvent e) {
                 jFramePrimeiroMenu.dispose();
                 Login.initLogin();
+            }
+        });
+
+        relatóriosButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jFramePrimeiroMenu.dispose();
+                new RelatorioMenu();
             }
         });
     }
